@@ -29,11 +29,32 @@ for block in json_blocks:
 if job_posting is None:
     raise Exception("No jobBenefits in JSON block.")
 
-loc = job_posting["jobLocation"]["address"]
+url = soup.find("link", rel="canonical")["href"]
+title = job_posting["title"]
+company = job_posting["hiringOrganization"]["name"]
+category = job_posting["occupationalCategory"]
+date = job_posting["datePosted"]
+location = job_posting["jobLocation"]["address"]["addressLocality"]
+position = job_posting["experienceRequirements"]["description"]
 skills = job_posting["skills"]
-for s in skills:
-    print("-", s["value"])
-
 salary = job_posting["baseSalary"]["value"]["value"]
-currency = job_posting["baseSalary"]["currency"]
-print (salary, currency)
+
+skillsBetter = []
+for s in skills:
+    skillsBetter.append(s["value"])
+
+result = [
+    url,
+    title,
+    company,
+    category,
+    date,
+    location,
+    position,
+    skillsBetter,
+    salary
+]
+
+output = json.dumps(result, indent=4)
+with open("sample.json", "w") as f:
+    f.write(output)
