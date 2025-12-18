@@ -43,17 +43,17 @@ skillsBetter = []
 for s in skills:
     skillsBetter.append(s["value"])
 
-result = [
-    url,
-    title,
-    company,
-    category,
-    date,
-    location,
-    position,
-    skillsBetter,
-    salary
-]
+result = {
+    "url": url,
+    "title": title,
+    "company": company,
+    "category": category,
+    "date": date,
+    "location": location,
+    "position": position,
+    "skills": skillsBetter,
+    "salary": salary
+}
 
 output = json.dumps(result, indent=4)
 with open("sample.json", "w") as f:
