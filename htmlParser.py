@@ -52,7 +52,7 @@ result = {
     "location": location,
     "position": position,
     "skills": skillsBetter,
-    "salary": salary
+    "salary": str(salary)
 }
 
 output = json.dumps(result, indent=4)
