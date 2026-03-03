@@ -1,7 +1,11 @@
 from bs4 import BeautifulSoup
 import json
+import os
 
-with open("test.htm", "r", encoding="utf-8") as f:
+INPUT_FOLDER = "jobs"
+filename = "job_11.html"
+html_path = os.path.join(INPUT_FOLDER, filename)
+with open(html_path, "r", encoding="utf-8") as f:
     soup = BeautifulSoup(f, "html.parser")
 
 json_blocks = soup.find_all("script", type="application/ld+json")
